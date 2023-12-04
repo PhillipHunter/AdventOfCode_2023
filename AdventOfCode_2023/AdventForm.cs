@@ -13,6 +13,8 @@ namespace AdventOfCode_2023
             lblStatus.Text = string.Empty;
 
             UpdatePuzzleList();
+
+            cboSelectDay.SelectedIndex = cboSelectDay.Items.Count - 1;
         }
         private void UpdatePuzzleList()
         {

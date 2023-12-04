@@ -4,15 +4,15 @@ using System.Text;
 
 namespace AOC2023.Puzzles
 {
-    public class Day1 : IAdventPuzzle
+    public class Day1Part1 : IAdventPuzzle
     {
         public string Name { get; }
 
         private const string FILENAME = "Day1.txt";
 
-        public Day1()
+        public Day1Part1()
         {
-            Name = "Day 1: Trebuchet?!";
+            Name = "Day 1 Part 1: Trebuchet?!";
         }
         
         public PuzzleOutput GetOutput()
