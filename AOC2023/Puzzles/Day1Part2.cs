@@ -8,7 +8,7 @@ namespace AOC2023.Puzzles
     {
         public string Name { get; }
 
-        private const string FILENAME = "Day1_Part2Ex.txt";
+        private const string FILENAME = "Day1.txt";
         private Dictionary<string, int> numbers = new Dictionary<string, int>();
 
         public Day1Part2()
@@ -41,39 +41,41 @@ namespace AOC2023.Puzzles
                 string originalLine = new string(currLine);
 
                 AOC.Log($"\nLine {i + 1} {currLine}");
-                
-                bool done = false;
-                while (done != true)
+
+                Dictionary<string, List<int>> positionsFound = new Dictionary<string, List<int>>();
+
+                foreach (KeyValuePair<string, int> numericalKP in numbers)
                 {
-                    for (int lineCharIndex = 0; lineCharIndex < currLine.Length; lineCharIndex++)
+                    AOC.Log($"Checking number {numericalKP.Value}");
+
+                    int index = 0;
+                    for (int lineCharIndex = 0; lineCharIndex < currLine.Length; lineCharIndex += (index + 1))
                     {
-                        Debug.WriteLine($"Start: lineCharIndex: {lineCharIndex} currLineLength: {currLine.Length}");
-                        bool foundInner = false;
-                        if (foundInner) break;
+                        string checking = currLine.Substring(lineCharIndex);
+                        AOC.Log($"Checking string {checking}");
 
-                        string checking = currLine.Substring(0, lineCharIndex + 1);
-                        AOC.Log($"Checking {checking}");
+                        index = checking.IndexOf(numericalKP.Key);
 
-                        foreach (KeyValuePair<string, int> numericalKP in numbers)
-                        {
-                            if (checking.Contains(numericalKP.Key))
-                            {
-                                checking = $"{checking.Replace(numericalKP.Key, numericalKP.Value.ToString())}{currLine.Substring(lineCharIndex + 1)}";
-                                AOC.Log($"Found number. Restart with {checking}");
-                                currLine = checking;
-                                foundInner = true;
-                                break;
-                            }
-                        }
-                        Debug.WriteLine($"End: lineCharIndex: {lineCharIndex} currLineLength: {currLine.Length}");
-                        if (!foundInner && lineCharIndex == currLine.Length - 1)
-                        {
-                            done = true;
-                            AOC.Log("Done with replacement");
-                        }
+                        if (index == -1)
+                            break;
+
+                        if (!positionsFound.ContainsKey(numericalKP.Key))
+                            positionsFound[numericalKP.Key] = new List<int>();
+                        
+                        positionsFound[numericalKP.Key].Add(index + lineCharIndex);
+                        AOC.Log($"Found at {index}");
                     }
                 }
-                
+
+                foreach (KeyValuePair<string, List<int>> positionsFoundKP in positionsFound)
+                {
+                    foreach(int currIndex in positionsFoundKP.Value)
+                    {
+                        char[] arr = currLine.ToCharArray();
+                        arr[currIndex] = numbers[positionsFoundKP.Key].ToString()[0];
+                        currLine = new string(arr);
+                    }
+                }
 
                 AOC.Log($"Replaced line: {currLine}");
                 AOC.Log($"Original line: {originalLine}");
