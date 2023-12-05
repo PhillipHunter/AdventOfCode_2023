@@ -10,6 +10,8 @@ namespace AOC2023
     {
         public string Name { get; }
 
+        public string? Solution { get; }
+
         public PuzzleOutput GetOutput();
     }
 }

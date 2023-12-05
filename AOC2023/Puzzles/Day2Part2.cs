@@ -10,6 +10,7 @@ namespace AOC2023.Puzzles
     public class Day2Part2 : IAdventPuzzle
     {
         public string Name { get; }
+        public string? Solution { get; }
 
         private const string FILENAME = "Day2.txt";
         
@@ -23,6 +24,7 @@ namespace AOC2023.Puzzles
         public Day2Part2()
         {
             Name = "Day 2 Part 2: Cube Conundrum";
+            Solution = "71535";
         }
 
         public PuzzleOutput GetOutput()

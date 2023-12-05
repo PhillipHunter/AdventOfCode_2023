@@ -7,6 +7,7 @@ namespace AOC2023.Puzzles
     public class Day1Part2 : IAdventPuzzle
     {
         public string Name { get; }
+        public string? Solution { get; }
 
         private const string FILENAME = "Day1.txt";
         private Dictionary<string, int> numbers = new Dictionary<string, int>();
@@ -14,6 +15,7 @@ namespace AOC2023.Puzzles
         public Day1Part2()
         {
             Name = "Day 1 Part 2: Trebuchet?!";
+            Solution = "53592";
 
             numbers["ONE"] = 1;
             numbers["TWO"] = 2;

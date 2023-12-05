@@ -11,12 +11,14 @@ namespace AOC2023.Puzzles
     public class Day3Part1 : IAdventPuzzle
     {
         public string Name { get; }
+        public string? Solution { get; }
 
         private const string FILENAME = "Day3.txt";
         
         public Day3Part1()
         {
             Name = "Day 3 Part 1: Gear Ratios";
+            Solution = "507214";
         }
 
         public PuzzleOutput GetOutput()

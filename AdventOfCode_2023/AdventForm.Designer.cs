@@ -35,6 +35,8 @@
             this.lblResult = new System.Windows.Forms.Label();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.lblStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblSolution = new System.Windows.Forms.Label();
+            this.lblSolutionDisplay = new System.Windows.Forms.Label();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -103,11 +105,32 @@
             this.lblStatus.Text = "#STATUS";
             this.lblStatus.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
+            // lblSolution
+            // 
+            this.lblSolution.AutoSize = true;
+            this.lblSolution.Location = new System.Drawing.Point(78, 141);
+            this.lblSolution.Name = "lblSolution";
+            this.lblSolution.Size = new System.Drawing.Size(64, 20);
+            this.lblSolution.TabIndex = 8;
+            this.lblSolution.Text = "Solution";
+            // 
+            // lblSolutionDisplay
+            // 
+            this.lblSolutionDisplay.AutoSize = true;
+            this.lblSolutionDisplay.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblSolutionDisplay.Location = new System.Drawing.Point(148, 141);
+            this.lblSolutionDisplay.Name = "lblSolutionDisplay";
+            this.lblSolutionDisplay.Size = new System.Drawing.Size(93, 20);
+            this.lblSolutionDisplay.TabIndex = 9;
+            this.lblSolutionDisplay.Text = "#SOLUTION";
+            // 
             // AdventForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(575, 199);
+            this.Controls.Add(this.lblSolutionDisplay);
+            this.Controls.Add(this.lblSolution);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.lblResult);
             this.Controls.Add(this.txtResult);
@@ -134,5 +157,7 @@
         private Label lblResult;
         private StatusStrip statusStrip;
         private ToolStripStatusLabel lblStatus;
+        private Label lblSolution;
+        private Label lblSolutionDisplay;
     }
 }

@@ -60,6 +60,17 @@ namespace AdventOfCode_2023
         private void cboSelectDay_SelectedIndexChanged(object sender, EventArgs e)
         {
             lblStatus.Text = String.Empty;
+
+            if(((IAdventPuzzle)cboSelectDay.SelectedItem).Solution != null)
+            {
+                lblSolution.Text = "Solution";
+                lblSolutionDisplay.Text = ((IAdventPuzzle)cboSelectDay.SelectedItem).Solution;
+            }
+            else
+            {
+                lblSolution.Text = string.Empty;
+                lblSolutionDisplay.Text = string.Empty;
+            }
         }
     }
 }
