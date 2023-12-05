@@ -115,6 +115,7 @@
             this.Controls.Add(this.cboSelectDay);
             this.Controls.Add(this.btnGenerate);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MaximizeBox = false;
             this.Name = "AdventForm";
             this.Text = "Advent of Code 2023";
             this.statusStrip.ResumeLayout(false);
