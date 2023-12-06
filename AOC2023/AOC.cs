@@ -16,6 +16,7 @@ namespace AOC2023
             adventPuzzles.Add(new Day3Part1());
             adventPuzzles.Add(new Day3Part2());
             adventPuzzles.Add(new Day4Part1());
+            adventPuzzles.Add(new Day4Part2());
 
             return adventPuzzles.ToArray();
         }
