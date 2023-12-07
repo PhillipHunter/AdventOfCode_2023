@@ -1,5 +1,5 @@
 ﻿using AOC2023;
-using AOC2023.Models.Day6Part1;
+using AOC2023.Models.Day6Part2;
 using Newtonsoft.Json;
 using System.Configuration;
 using System.Diagnostics;
@@ -9,17 +9,17 @@ using System.Text.RegularExpressions;
 
 namespace AOC2023.Puzzles
 {
-    public class Day6Part1 : IAdventPuzzle
+    public class Day6Part2 : IAdventPuzzle
     {
         public string Name { get; }
         public string? Solution { get; }
 
         private const string FILENAME = "Day6.txt";
         
-        public Day6Part1()
+        public Day6Part2()
         {
-            Name = "Day 6 Part 1: Wait For It";
-            Solution = "211904";
+            Name = "Day 6 Part 2: Wait For It";
+            Solution = "43364472";
         }
 
         public PuzzleOutput GetOutput()
@@ -33,39 +33,21 @@ namespace AOC2023.Puzzles
             #region Parse
 
             string[] timesInput = ((currPuzzleFileLines[0].Split(':'))[1]).Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            foreach(string currTimesInput in timesInput)
-            {
-                raceSet.Times.Add(int.Parse(currTimesInput));
-            }
+            raceSet.Times.Add(long.Parse(string.Join("", timesInput)));
 
             string[] distsInput = ((currPuzzleFileLines[1].Split(':'))[1]).Split(' ', StringSplitOptions.RemoveEmptyEntries);
-            foreach (string currDistsInput in distsInput)
-            {
-                raceSet.Distances.Add(int.Parse(currDistsInput));
-            }
+            raceSet.Distances.Add(long.Parse(string.Join("", distsInput)));
 
             AOC.Log(raceSet.ToString());
 
             #endregion Parse
-
-
-            List<int> waysToWin = new List<int>();
-            for (int i = 0; i < raceSet.Times.Count; i++)
-            {
-                int currWaysToWin = raceSet.GetNumberOfWaysToWinForRace(i);
-                AOC.Log($"There are {currWaysToWin} ways to win race {i}");
-                
-                waysToWin.Add(currWaysToWin);
-            }
-
-            
 
             #endregion Puzzle
 
             stopwatch.Stop();
 
             PuzzleOutput puzzleOutput = new PuzzleOutput();
-            puzzleOutput.Result = waysToWin.Aggregate((a, b) =>  a * b).ToString();
+            puzzleOutput.Result = raceSet.GetNumberOfWaysToWinForRace(0).ToString();
             puzzleOutput.CompletionTime = stopwatch.ElapsedMilliseconds;
 
             return puzzleOutput;
@@ -73,30 +55,30 @@ namespace AOC2023.Puzzles
     }
 }
 
-namespace AOC2023.Models.Day6Part1
+namespace AOC2023.Models.Day6Part2
 {
     public class RaceSet
     {
-        public List<int> Times { get; set; } = new List<int>();
-        public List<int> Distances { get; set; } = new List<int>();
+        public List<long> Times { get; set; } = new List<long>();
+        public List<long> Distances { get; set; } = new List<long>();
 
-        public int GetDistanceWhenHeld(int raceId, int msHeld)
+        public long GetDistanceWhenHeld(int raceId, long msHeld)
         {
             return (Times[raceId] - msHeld) * msHeld;
         }
 
-        public int GetNumberOfWaysToWinForRace(int raceId, bool optimize = false)
+        public long GetNumberOfWaysToWinForRace(int raceId)
         {
-            List<int> winningHoldTimes = new List<int>();
+            long winningHoldTimes = 0;
             for (int i = 0; i <= Times[raceId]; i++)
             {
-                int distanceForCurrHoldTime = GetDistanceWhenHeld(raceId, i);
+                long distanceForCurrHoldTime = GetDistanceWhenHeld(raceId, i);
 
                 if (distanceForCurrHoldTime > Distances[raceId])
-                    winningHoldTimes.Add(i);
+                    winningHoldTimes++;
             }
 
-            return winningHoldTimes.Count;
+            return winningHoldTimes;
         }
 
         public override string ToString()
