@@ -45,6 +45,8 @@ namespace AdventOfCode_2023
                 IAdventPuzzle selectedPuzzle = (IAdventPuzzle)cboSelectDay.SelectedItem;
                 
                 lblStatus.Text = "Loading...";
+                lblStatus.ForeColor = Color.Black;
+                txtResult.Text = String.Empty;
                 btnGenerate.Enabled = false;
                 cboSelectDay.Enabled = false;
 
@@ -53,6 +55,12 @@ namespace AdventOfCode_2023
             }
             catch (Exception ex)
             {
+                txtResult.Text = String.Empty;
+                lblStatus.Text = $"{ex.Message}";
+                lblStatus.ForeColor = Color.DarkRed;
+
+                btnGenerate.Enabled = true;
+                cboSelectDay.Enabled = true;
                 MessageBox.Show(ex.Message);
             }
         }
